@@ -21,14 +21,14 @@ public class Doctor extends Person{
 
 
     public Doctor(int id,String name, String imageUrl, String department, String specialization, LocalDate dateOfBirth){
-        super(id,name, imageUrl, dateOfBirth);
+        super(name, imageUrl, dateOfBirth);
         this.department = department;
         this.specialization = specialization;
 
     }
 
     public Doctor(int id,String name, String imageUrl, LocalDate dateOfBirth){
-        super(id,name, imageUrl, dateOfBirth);
+        super(name, imageUrl, dateOfBirth);
 
     }
 
