@@ -1,18 +1,24 @@
 package com.saudeall.app.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.UUID;
 
-@Getter
-@Setter
+@Entity
+@Data
+@Table(name="appointment")
+
 @AllArgsConstructor
 public class Appointment {
-    Doctor doctor;
-    Patient patient;
-    Location location;
+    @Id
+    private UUID id;
+    UUID doctorId;
+    UUID patientId;
+    UUID appointmentId;
+    UUID locationId;
     LocalDateTime dateOfAppointment;
 }

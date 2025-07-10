@@ -2,6 +2,7 @@ package com.saudeall.app.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Person {
     private String name;
-    private String picture;
+    private String image;
     private LocalDate dateOfBirth;
 }

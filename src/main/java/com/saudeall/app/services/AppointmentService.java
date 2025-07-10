@@ -5,14 +5,27 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import com.saudeall.app.repository.AppointmentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.saudeall.app.model.Appointment;
 
 @Service
+@RequiredArgsConstructor
 public class AppointmentService {
+    private final AppointmentRepository appointmentRepository;
+
     public List<Appointment> getAll() {
-        return Collections.emptyList();
+        return appointmentRepository.findAll();
+    }
+
+    public void add(Appointment appointment){
+        appointmentRepository.save(appointment);
+    }
+
+    public Appointment findById(UUID idOfAppointment){
+        return appointmentRepository.findById(idOfAppointment);
     }
 
     public List<Appointment> getAllByDate(LocalDateTime date) {

@@ -10,15 +10,18 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.UUID;
+
 @Entity
 @Data
-@Table(name = "patients")
+@Table(name = "patient")
 @EqualsAndHashCode(callSuper = true)
 public class Patient extends Person {
     @Id
-    private int id;
+    private UUID id;
 
     private String iban;
+    @Column(name="contact")
     private String contactDetails;
 
     @Override
@@ -26,7 +29,7 @@ public class Patient extends Person {
         return "Patient{" +
                 "id=" + id +
                 ", name='" + getName() + '\'' +
-                ", picture='" + getPicture() + '\'' +
+                ", picture='" + getImage() + '\'' +
                 ", dateOfBirth=" + getDateOfBirth() +
                 ", iban='" + iban + '\'' +
                 ", contactDetails='" + contactDetails + '\'' +

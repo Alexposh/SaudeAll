@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/appointments")
 @RequiredArgsConstructor
 public class AppointmentController {
     private final AppointmentService appointmentService;
@@ -24,6 +25,11 @@ public class AppointmentController {
     @GetMapping("/appointments")
     public List<Appointment> getAppointments() {
         return appointmentService.getAll();
+    }
+
+    @GetMapping("/appointment/{id}")
+    public Appointment findById(@PathVariable UUID id){
+        return appointmentService.findById(id);
     }
 
     @GetMapping("/appointment/doctor/date")
