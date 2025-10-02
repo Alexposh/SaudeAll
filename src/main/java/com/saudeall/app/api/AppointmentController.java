@@ -22,32 +22,32 @@ import lombok.extern.slf4j.Slf4j;
 public class AppointmentController {
     private final AppointmentService appointmentService;
 
-    @GetMapping("/appointments")
+    @GetMapping
     public List<Appointment> getAppointments() {
         return appointmentService.getAll();
     }
 
-    @GetMapping("/appointment/{id}")
+    @GetMapping("/{id}")
     public Appointment findById(@PathVariable UUID id){
         return appointmentService.findById(id);
     }
 
-    @GetMapping("/appointment/doctor/date")
+    @GetMapping("/doctor/date")
     public List<Appointment> getAppointmentsByDoctorAndDate(UUID doctorId, LocalDateTime date) {
         return appointmentService.getAllByDoctorAndDate(doctorId, date);
     }
 
-    @GetMapping("/appointment/date")
+    @GetMapping("/date")
     public List<Appointment> getAppointmentsByDate(LocalDateTime date) {
         return appointmentService.getAllByDate(date);
     }
 
-    @GetMapping("/appointment/doctor")
+    @GetMapping("/doctor")
     public List<Appointment> getAppointmentsByDoctor(UUID doctorId) {
         return appointmentService.getAllByDoctor(doctorId);
     }
 
-    @GetMapping("/appointment/status")
+    @GetMapping("/status")
     public List<Appointment> getAppointmentsByDoctorAndStatus(UUID doctorId, Boolean status) {
         return appointmentService.getAllByDoctorAndStatus(doctorId, status);
     }
