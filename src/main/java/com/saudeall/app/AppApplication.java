@@ -17,13 +17,6 @@ public class AppApplication {
     public static void main(String[] args) {
         System.out.println("Starting the application...");
         ApplicationContext context = SpringApplication.run(AppApplication.class, args);
-
-        // Retrieve PatientService bean
-//        PatientService patientService = context.getBean(PatientService.class);
-
-//        System.out.println("Getting All Patients...");
-//        System.out.println(patientService.getAll());
-
         System.out.println("it worked");
     }
 

@@ -1,4 +1,4 @@
-package com.saudeall.app.model.DTO;
+package com.saudeall.app.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

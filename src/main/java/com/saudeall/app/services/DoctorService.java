@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.saudeall.app.model.dto.KeyValueId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,4 +38,34 @@ public class DoctorService {
     public Doctor findById(UUID idOfDoctor) {
         return doctorRepository.findById(idOfDoctor);
     }
+
+    public void update(UUID id, Doctor doctor){
+        Doctor doctorToUpdate = doctorRepository.findById(id);
+
+        if(!doctor.getName().isEmpty()){
+            doctorToUpdate.setName(doctor.getName());
+        }
+        if(!doctor.getImage().isEmpty()){
+            doctorToUpdate.setImage(doctor.getImage());
+        }
+        if(doctor.getDateOfBirth() != null){
+            doctorToUpdate.setDateOfBirth(doctor.getDateOfBirth());
+        }
+        if(!doctor.getDepartment().isEmpty()){ // what is the difference to .isBlank() ?
+            doctorToUpdate.setDepartment(doctor.getDepartment());
+        }
+        if(!doctor.getEmail().isEmpty()){
+            doctorToUpdate.setEmail(doctor.getEmail());
+        }
+        if(!doctor.getSpecialization().isEmpty()){
+            doctorToUpdate.setSpecialization(doctor.getSpecialization());
+        }
+        doctorRepository.save(doctorToUpdate);
+    }
+
+    public void updateOneField(KeyValueId dtoReceived){
+        System.out.println("update field running");
+        doctorRepository.updateField(dtoReceived.getId(), dtoReceived.getValue());
+    }
+
 }

@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Doctor extends Person{
     @Id
+    @UuidGenerator
     private UUID id;
 
     private String department;
@@ -26,15 +28,15 @@ public class Doctor extends Person{
 
 //    private ArrayList<Location> offices = new ArrayList<>();
 
-    public Doctor(int id,String name, String image, String department, String specialization, LocalDate dateOfBirth){
-        super(name, image, dateOfBirth);
+    public Doctor(int id,String name, String image, String email, String department, String specialization, LocalDate dateOfBirth){
+        super(name, image, email, dateOfBirth);
         this.department = department;
         this.specialization = specialization;
 
     }
 
-    public Doctor(int id,String name, String image, LocalDate dateOfBirth){
-        super(name, image, dateOfBirth);
+    public Doctor(int id,String name, String image, String email, LocalDate dateOfBirth){
+        super(name, image, email, dateOfBirth);
     }
 
 }

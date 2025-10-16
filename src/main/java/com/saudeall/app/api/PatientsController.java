@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/patients")
+@CrossOrigin(origins="http://localhost:8100")
 public class PatientsController {
     private final PatientService patientService;
 
@@ -24,22 +25,11 @@ public class PatientsController {
 
     @PostMapping(path = "/patient")
     public void createPatient(@RequestBody Patient patient) {
-//        Patient patient = new Patient();
-//        System.out.println("Create our patient");
-//        patient.setName("Frank Doe");
-//        patient.setPicture("https://example.com/picture.jpg");
-//        patient.setDateOfBirth(LocalDate.of(1990, 1, 1));
-//        patient.setIban("DE89370400440532013000");
-//        patient.setContactDetails("john.doe@company.com");
-//        System.out.println("Patient: " + patient);
         System.out.println("Adding a patient....");
         patientService.add(patient);
     }
     @GetMapping(path="/patient/{id}")
-    public Patient getSinglePatient(@PathVariable UUID id){
-        return patientService.findById(id);
-
-    }
+    public Patient getSinglePatient(@PathVariable UUID id){ return patientService.findById(id);}
 
     @PutMapping(path="/patient-update/{id}")
     public void updatePatient(@PathVariable UUID id, @RequestBody Patient updatedPatient){
