@@ -21,22 +21,22 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Patient extends Person {
-    @Id
-    @UuidGenerator
-    private UUID id;
+//    @Id
+//    @UuidGenerator
+//    private UUID id;
 
     private String iban;
     @Column(name="contact")
     private String contactDetails;
 
 
-    public Patient(int id,String name, String image, String email, String iban, String contactDetails, LocalDate dateOfBirth){
-        super(name, image, email, dateOfBirth);
+    public Patient(UUID id,String name, String image, String email, String iban, String contactDetails, LocalDate dateOfBirth){
+        super(id, name, image, email, dateOfBirth);
         this.iban = iban;
         this.contactDetails = contactDetails;
     }
 
-    public Patient(int id,String name, String image, String email, LocalDate dateOfBirth){
-        super(name, image, email, dateOfBirth);
+    public Patient(UUID id,String name, String image, String email, LocalDate dateOfBirth){
+        super(id, name, image, email, dateOfBirth);
     }
 }

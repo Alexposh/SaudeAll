@@ -36,9 +36,11 @@ public class AppointmentController {
     }
 
     @PostMapping("/create")
-    public void createAppointment(@RequestBody AppointmentCreationDTO appointment){
+    public void createAppointment(@RequestBody Appointment appointment){
         System.out.println("Creating an appointment");
-//        appointmentService.add(appointment);
+        System.out.println(LocalDateTime.now());
+//        appointment.setCreatedAt(LocalDateTime.now());
+        appointmentService.add(appointment);
     }
 
 

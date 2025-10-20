@@ -18,9 +18,9 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper=true)
 @NoArgsConstructor
 public class Doctor extends Person{
-    @Id
-    @UuidGenerator
-    private UUID id;
+//    @Id
+//    @UuidGenerator
+//    private UUID id;
 
     private String department;
 
@@ -28,15 +28,15 @@ public class Doctor extends Person{
 
 //    private ArrayList<Location> offices = new ArrayList<>();
 
-    public Doctor(int id,String name, String image, String email, String department, String specialization, LocalDate dateOfBirth){
-        super(name, image, email, dateOfBirth);
+    public Doctor(UUID id,String name, String image, String email, String department, String specialization, LocalDate dateOfBirth){
+        super(id, name, image, email, dateOfBirth);
         this.department = department;
         this.specialization = specialization;
 
     }
 
-    public Doctor(int id,String name, String image, String email, LocalDate dateOfBirth){
-        super(name, image, email, dateOfBirth);
+    public Doctor(UUID id,String name, String image, String email, LocalDate dateOfBirth){
+        super( id, name, image, email, dateOfBirth);
     }
 
 }

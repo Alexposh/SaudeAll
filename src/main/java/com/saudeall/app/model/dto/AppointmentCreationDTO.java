@@ -8,8 +8,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 public class AppointmentCreationDTO {
-    private UUID doctor_id;
-    private UUID patient_id;
+    private UUID doctorId;
+    private UUID patientId;
     private UUID location_id;
-    private String date_of_appointment;
+    private String dateOfAppointment;
 }
