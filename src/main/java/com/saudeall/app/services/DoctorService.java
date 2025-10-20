@@ -1,10 +1,7 @@
 package com.saudeall.app.services;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 import com.saudeall.app.model.dto.KeyValueId;
 import lombok.RequiredArgsConstructor;
@@ -68,4 +65,8 @@ public class DoctorService {
         doctorRepository.updateField(dtoReceived.getId(), dtoReceived.getValue());
     }
 
+    public ArrayList<String> getAllSpecializations()
+    {
+        return doctorRepository.getSpecializations();
+    }
 }

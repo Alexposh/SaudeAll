@@ -4,10 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.saudeall.app.model.dto.AppointmentCreationDTO;
+import org.springframework.web.bind.annotation.*;
 
 import com.saudeall.app.model.Appointment;
 import com.saudeall.app.services.AppointmentService;
@@ -36,6 +34,13 @@ public class AppointmentController {
     public List<Appointment> getAppointmentsByDoctorAndDate(UUID doctorId, LocalDateTime date) {
         return appointmentService.getAllByDoctorAndDate(doctorId, date);
     }
+
+    @PostMapping("/create")
+    public void createAppointment(@RequestBody AppointmentCreationDTO appointment){
+        System.out.println("Creating an appointment");
+//        appointmentService.add(appointment);
+    }
+
 
     @GetMapping("/appointment/date")
     public List<Appointment> getAppointmentsByDate(LocalDateTime date) {

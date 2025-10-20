@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,6 +47,12 @@ public class DoctorsController {
         return doctorService.getAllByAvailability(availabilityDTO.getStartDate(), availabilityDTO.getEndDate());
 
     }
+
+    @GetMapping("/specialities")
+    public ArrayList<String> getAllSpecializations(){
+        return doctorService.getAllSpecializations();
+    }
+
 //
 //    @PutMapping("/doctor-partial-update/{id}/{field}/{value}")
 //    public void updateSingleField(@PathVariable UUID id, @PathVariable String field, @PathVariable String value){

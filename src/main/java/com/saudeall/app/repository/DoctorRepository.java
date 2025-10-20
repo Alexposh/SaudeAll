@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Repository
@@ -29,5 +30,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     @Query(value = "UPDATE doctor SET image = :value WHERE id = :id", nativeQuery = true)
     void updateField(@Param("id") UUID id, @Param("value") String value);
 
+
+    @Query(value = "SELECT DISTINCT d.specialization FROM Doctor d")
+    ArrayList<String> getSpecializations();
 
 }
