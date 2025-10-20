@@ -17,6 +17,7 @@ public class AppApplication {
     public static void main(String[] args) {
         System.out.println("Starting the application...");
         ApplicationContext context = SpringApplication.run(AppApplication.class, args);
+
         System.out.println("Application started!");
     }
 
