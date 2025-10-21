@@ -31,6 +31,8 @@ public class PatientsController {
     @GetMapping(path="/patient/{id}")
     public Patient getSinglePatient(@PathVariable UUID id){ return patientService.findById(id);}
 
+
+
     @PutMapping(path="/patient-update/{id}")
     public void updatePatient(@PathVariable UUID id, @RequestBody Patient updatedPatient){
         patientService.update(id, updatedPatient);

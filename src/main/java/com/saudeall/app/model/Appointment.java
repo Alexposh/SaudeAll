@@ -1,5 +1,6 @@
 package com.saudeall.app.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,6 +30,7 @@ public class Appointment {
 
     @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
     @Column(name="date_of_appointment")
+    @JsonProperty("date_of_appointment")
     LocalDateTime dateOfAppointment;
 
     @CreationTimestamp
