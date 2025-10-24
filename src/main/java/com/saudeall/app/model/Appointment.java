@@ -15,7 +15,7 @@ import java.util.UUID;
 @Data
 @Table(name="appointment")
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Appointment {
     @Id
     @UuidGenerator

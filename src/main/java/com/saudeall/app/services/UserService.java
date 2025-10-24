@@ -22,6 +22,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public void add(User user) { userRepository.save(user); }
+
     public User findById(UUID idOfUser){ return userRepository.findById(idOfUser);}
 
     public User findByEmail(String email){ return userRepository.findByEmail(email);}
