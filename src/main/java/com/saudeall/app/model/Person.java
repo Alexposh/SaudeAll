@@ -3,14 +3,14 @@ package com.saudeall.app.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+
+import org.hibernate.annotations.UuidGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
 
 @Data
 @MappedSuperclass

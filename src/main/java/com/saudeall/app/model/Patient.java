@@ -1,17 +1,21 @@
 package com.saudeall.app.model;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import com.saudeall.app.model.enums.Gender;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
-
-import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -23,15 +27,19 @@ public class Patient {
 //    @Id
 //    @UuidGenerator
 //    private UUID id;
+
     @Id
     private UUID id;
+
     private String firstName;
     private String lastName;
     private String image;
     private String phoneNumber;
-    @Enumerated(EnumType.STRING)
+
     @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
     private String email;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -39,7 +47,6 @@ public class Patient {
 //    private String iban;
 //    @Column(name="contact")
 //    private String contactDetails;
-
 
 //    public Patient(UUID id,String name, String image, String email, String iban, String contactDetails, LocalDate dateOfBirth){
 //        super(id, name, image, email, dateOfBirth);
@@ -51,10 +58,9 @@ public class Patient {
 //        super(id, name, image, email, dateOfBirth);
 //    }
 
-    public Patient(UUID id, String email){
+    public Patient(UUID id, String email) {
         this.id = id;
         this.email = email;
     }
-
 
 }

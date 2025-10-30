@@ -1,4 +1,4 @@
-package com.saudeall.app.model;
+package com.saudeall.app.model.enums;
 
 import lombok.Getter;
 

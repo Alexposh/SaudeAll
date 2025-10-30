@@ -1,7 +1,6 @@
 package com.saudeall.app.api;
 
 import com.saudeall.app.model.Doctor;
-import com.saudeall.app.model.Role;
 import com.saudeall.app.model.StaffMember;
 import com.saudeall.app.services.DoctorService;
 import com.saudeall.app.services.StaffService;
@@ -10,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -35,7 +33,7 @@ public class StaffController {
         StaffMember newlyCreatedStaffMember = staffService.findByEmail(newStaffMember.getEmail());
         Doctor newlyCreatedDoctor = new Doctor();
 
-        newlyCreatedDoctor.setEmail(newlyCreatedStaffMember.getEmail());
+        //newlyCreatedDoctor.setEmail(newlyCreatedStaffMember.getEmail());
         newlyCreatedDoctor.setId(newlyCreatedStaffMember.getId());
 
         doctorService.add(newlyCreatedDoctor);

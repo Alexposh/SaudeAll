@@ -1,15 +1,12 @@
 package com.saudeall.app.api;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.saudeall.app.model.Gender;
-import com.saudeall.app.model.User;
+import com.saudeall.app.model.enums.Gender;
 import com.saudeall.app.model.dto.GenderDTO;
-import com.saudeall.app.model.dto.LoginData;
-import com.saudeall.app.services.UserService;
+
 import org.springframework.web.bind.annotation.*;
 import com.saudeall.app.model.Patient;
 import com.saudeall.app.services.PatientService;
@@ -26,7 +23,7 @@ public class PatientsController {
 
     @GetMapping
     public List<Patient> getPatients() {
-        System.out.println("Fetching all patients ...");
+        log.info("Fetching all patients ...");
         return patientService.getAll();
     }
 
@@ -39,7 +36,7 @@ public class PatientsController {
 
     @PostMapping(path = "/patient")
     public void createPatient(@RequestBody Patient patient) {
-        System.out.println("Adding a patient....");
+        log.info("Adding a patient....");
         patientService.add(patient);
     }
 

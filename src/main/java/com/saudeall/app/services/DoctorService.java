@@ -1,15 +1,21 @@
 package com.saudeall.app.services;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
-import com.saudeall.app.model.dto.KeyValueId;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.saudeall.app.model.Doctor;
+import com.saudeall.app.model.dto.KeyValueId;
 import com.saudeall.app.repository.DoctorRepository;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DoctorService {
@@ -18,7 +24,6 @@ public class DoctorService {
     public static UUID generateRandomUUID() {
         return UUID.randomUUID();
     }
-
 
     public List<Doctor> getAll() {
         return doctorRepository.findAll();
@@ -36,37 +41,36 @@ public class DoctorService {
         return doctorRepository.findById(idOfDoctor);
     }
 
-    public void update(UUID id, Doctor doctor){
+    public void update(UUID id, Doctor doctor) {
         Doctor doctorToUpdate = doctorRepository.findById(id);
 
-        if(!doctor.getName().isEmpty()){
+        if (!doctor.getName().isEmpty()) {
             doctorToUpdate.setName(doctor.getName());
         }
-        if(!doctor.getImage().isEmpty()){
+        if (!doctor.getImage().isEmpty()) {
             doctorToUpdate.setImage(doctor.getImage());
         }
-        if(doctor.getDateOfBirth() != null){
+        if (doctor.getDateOfBirth() != null) {
             doctorToUpdate.setDateOfBirth(doctor.getDateOfBirth());
         }
-        if(!doctor.getDepartment().isEmpty()){ // what is the difference to .isBlank() ?
+        if (!doctor.getDepartment().isEmpty()) { // what is the difference to .isBlank() ?
             doctorToUpdate.setDepartment(doctor.getDepartment());
         }
-        if(!doctor.getEmail().isEmpty()){
-            doctorToUpdate.setEmail(doctor.getEmail());
-        }
-        if(!doctor.getSpecialization().isEmpty()){
+        //if(!doctor.getEmail().isEmpty()){
+        //    doctorToUpdate.setEmail(doctor.getEmail());
+        //}
+        if (!doctor.getSpecialization().isEmpty()) {
             doctorToUpdate.setSpecialization(doctor.getSpecialization());
         }
         doctorRepository.save(doctorToUpdate);
     }
 
-    public void updateOneField(KeyValueId dtoReceived){
-        System.out.println("update field running");
+    public void updateOneField(KeyValueId dtoReceived) {
+        log.info("update field running");
         doctorRepository.updateField(dtoReceived.getId(), dtoReceived.getValue());
     }
 
-    public ArrayList<String> getAllSpecializations()
-    {
+    public List<String> getAllSpecializations() {
         return doctorRepository.getSpecializations();
     }
 }

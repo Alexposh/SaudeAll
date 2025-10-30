@@ -1,17 +1,18 @@
 package com.saudeall.app.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-import com.saudeall.app.model.Gender;
-import org.springframework.http.ResponseEntity;
+import com.saudeall.app.model.enums.Gender;
+
 import org.springframework.stereotype.Service;
 import com.saudeall.app.model.Patient;
 import com.saudeall.app.repository.PatientRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PatientService {
@@ -39,7 +40,7 @@ public class PatientService {
             patientToUpdate.setImage(patient.getImage());
         }
         if(patient.getDateOfBirth() != null){
-            System.out.println(patient);
+            log.info(patient.toString());
             patientToUpdate.setDateOfBirth(patient.getDateOfBirth());
         }
         if(!patient.getLastName().isEmpty()){ // what is the difference to .isBlank() ?

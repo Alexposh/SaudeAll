@@ -30,20 +30,20 @@ public class UserController {
 
         userService.add(user); // this created the user in the patient_auth_data table
         User newUserCreated = userService.findByEmail(user.getEmail());
-        Patient newPatientToBeCreated = new Patient();
-        newPatientToBeCreated.setId(newUserCreated.getId());
-        newPatientToBeCreated.setEmail(newUserCreated.getEmail());
+        Patient newPatientToBeCreated = new Patient(newUserCreated.getId(), newUserCreated.getEmail());
+        //newPatientToBeCreated.setId(newUserCreated.getId());
+        //newPatientToBeCreated.setEmail(newUserCreated.getEmail());
         patientService.add(newPatientToBeCreated); // here we should add a patient in the patient table
 //        System.out.println(userService.findByEmail(user.getEmail()));
         return patientService.findById(newPatientToBeCreated.getId());
     }
 
     @PostMapping(path = "/login")
-    public User FindUserByName(@RequestBody LoginData loginData){
+    public User findUserByName(@RequestBody LoginData loginData){
         User userFound = userService.findByEmail(loginData.getEmail());
-        System.out.println(userFound.getEmail());
-        System.out.println(userFound.getPassword());
-         System.out.println(userFound.getId());
+        log.info(userFound.getEmail());
+        log.info(userFound.getPassword());
+        log.info(userFound.getId().toString());
         return userFound;
     }
 }

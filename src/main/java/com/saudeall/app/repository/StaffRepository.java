@@ -1,6 +1,6 @@
 package com.saudeall.app.repository;
 
-import com.saudeall.app.model.Role;
+import com.saudeall.app.model.enums.Role;
 import com.saudeall.app.model.StaffMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 

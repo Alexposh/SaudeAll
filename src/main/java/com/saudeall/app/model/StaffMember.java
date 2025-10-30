@@ -8,6 +8,8 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 
+import com.saudeall.app.model.enums.Role;
+
 @Entity
 @Data
 @Table(name="staff_auth_data")

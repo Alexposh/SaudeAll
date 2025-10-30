@@ -1,6 +1,6 @@
 package com.saudeall.app.services;
 
-import com.saudeall.app.model.Role;
+import com.saudeall.app.model.enums.Role;
 import com.saudeall.app.model.StaffMember;
 import com.saudeall.app.repository.StaffRepository;
 import lombok.RequiredArgsConstructor;

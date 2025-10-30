@@ -4,8 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import com.saudeall.app.model.dto.AppointmentCreationDTO;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.saudeall.app.model.Appointment;
 import com.saudeall.app.services.AppointmentService;
@@ -26,7 +30,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/appointment/{id}")
-    public Appointment findById(@PathVariable UUID id){
+    public Appointment findById(@PathVariable UUID id) {
         return appointmentService.findById(id);
     }
 
@@ -36,13 +40,12 @@ public class AppointmentController {
     }
 
     @PostMapping("/create")
-    public void createAppointment(@RequestBody Appointment appointment){
-        System.out.println("Creating an appointment");
-        System.out.println(LocalDateTime.now());
+    public void createAppointment(@RequestBody Appointment appointment) {
+        log.info("Creating an appointment");
+        log.info(LocalDateTime.now().toString());
 //        appointment.setCreatedAt(LocalDateTime.now());
         appointmentService.add(appointment);
     }
-
 
     @GetMapping("/appointment/date")
     public List<Appointment> getAppointmentsByDate(LocalDateTime date) {
