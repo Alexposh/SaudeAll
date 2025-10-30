@@ -26,7 +26,13 @@ public class DoctorsController {
         return doctorService.getAll();
     }
 
-    @PostMapping(path="/doctor")
+//    @PostMapping(path="/create")
+//    public void createDoctor(@RequestBody Doctor doctor) {
+//        System.out.println("Adding a doctor...");
+//        doctorService.add(doctor);
+//    }
+
+    @PostMapping(path="/create")
     public void createDoctor(@RequestBody Doctor doctor) {
         System.out.println("Adding a doctor...");
         doctorService.add(doctor);

@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -40,4 +39,8 @@ public class Appointment {
 //    public Appointment(UUID id, UUID doctorId, UUID patientId, UUID locationId, LocalDateTime dateOfAppointment){
 
 //    }
+
+    public enum Role {
+
+    }
 }

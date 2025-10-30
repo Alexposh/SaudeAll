@@ -2,6 +2,7 @@ package com.saudeall.app.services;
 
 import com.saudeall.app.model.Doctor;
 import com.saudeall.app.model.User;
+import com.saudeall.app.model.dto.LoginData;
 import com.saudeall.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

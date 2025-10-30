@@ -1,8 +1,6 @@
 package com.saudeall.app.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,17 +10,17 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name="patient_auth_data")
+@Table(name="staff_auth_data")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class StaffMember {
     @Id
     @UuidGenerator
     private UUID id;
-
-    private String email;
+    private String  email;
     private String password;
-
-
+    @Enumerated(EnumType.STRING)
+    @Column(name="role")
+    private Role role;
 
 }

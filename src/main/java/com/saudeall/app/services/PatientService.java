@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.saudeall.app.model.Gender;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.saudeall.app.model.Patient;
@@ -28,32 +29,33 @@ public class PatientService {
         return patientRepository.findById(idOfPatient);
     }
 
-    public void update(UUID id, Patient patient){
-        Patient patientToUpdate = patientRepository.findById(id);
+    public void update(Patient patient){
+        Patient patientToUpdate = patientRepository.findById(patient.getId());
 
-        if(!patient.getName().isEmpty()){
-            patientToUpdate.setName(patient.getName());
+        if(!patient.getFirstName().isEmpty()){
+            patientToUpdate.setFirstName(patient.getFirstName());
         }
-        if(!patient.getImage().isEmpty()){
+        if(patient.getImage() != null){
             patientToUpdate.setImage(patient.getImage());
         }
         if(patient.getDateOfBirth() != null){
+            System.out.println(patient);
             patientToUpdate.setDateOfBirth(patient.getDateOfBirth());
         }
-        if(!patient.getIban().isEmpty()){ // what is the difference to .isBlank() ?
-            patientToUpdate.setIban(patient.getIban());
+        if(!patient.getLastName().isEmpty()){ // what is the difference to .isBlank() ?
+            patientToUpdate.setLastName(patient.getLastName());
         }
-        if(!patient.getContactDetails().isEmpty()){
-            patientToUpdate.setContactDetails(patient.getContactDetails());
+        if(!patient.getPhoneNumber().isEmpty()){
+            patientToUpdate.setPhoneNumber(patient.getPhoneNumber());
         }
-        if(!patient.getImage().isEmpty()){
-            patientToUpdate.setImage(patient.getImage());
-        }
-        if(!patient.getContactDetails().isEmpty()){
-            patientToUpdate.setContactDetails(patient.getContactDetails());
+
+        if(patient.getGender().getDisplayName() != null){
+//            System.out.println(patient.getGender().getDisplayName());
+            patientToUpdate.setGender(Gender.fromDisplayName(patient.getGender().getDisplayName()));
         }
 
         patientRepository.save(patientToUpdate);
+
     }
 
     public void deleteById(UUID id){

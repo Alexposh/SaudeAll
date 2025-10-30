@@ -1,7 +1,9 @@
 package com.saudeall.app.api;
 
+import com.saudeall.app.model.Patient;
 import com.saudeall.app.model.User;
 import com.saudeall.app.model.dto.LoginData;
+import com.saudeall.app.services.PatientService;
 import com.saudeall.app.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import java.util.List;
 @CrossOrigin(origins="http://localhost:8100")
 public class UserController {
     private final UserService userService;
+    private  final PatientService patientService;
 
     @GetMapping
     public List<User> getAllUsers(){
@@ -23,8 +26,16 @@ public class UserController {
     }
 
     @PostMapping(path="/create")
-    public void createUser(@RequestBody User user){
-        userService.add(user);
+    public Patient createUser(@RequestBody User user){
+
+        userService.add(user); // this created the user in the patient_auth_data table
+        User newUserCreated = userService.findByEmail(user.getEmail());
+        Patient newPatientToBeCreated = new Patient();
+        newPatientToBeCreated.setId(newUserCreated.getId());
+        newPatientToBeCreated.setEmail(newUserCreated.getEmail());
+        patientService.add(newPatientToBeCreated); // here we should add a patient in the patient table
+//        System.out.println(userService.findByEmail(user.getEmail()));
+        return patientService.findById(newPatientToBeCreated.getId());
     }
 
     @PostMapping(path = "/login")
@@ -32,19 +43,7 @@ public class UserController {
         User userFound = userService.findByEmail(loginData.getEmail());
         System.out.println(userFound.getEmail());
         System.out.println(userFound.getPassword());
-        System.out.println(userFound.getRole_id());
-        System.out.println(userFound.getId());
-        if(userFound.getRole_id().toString().equals("55558400-e29b-41d4-a716-446655440010")){
-            System.out.println("login data entered is for a patient");
-        }
-        if(userFound.getRole_id().toString().equals("33338400-e29b-41d4-a716-446655440010")){
-            System.out.println("login data entered is for a doctor");
-        }
-
-        if(userFound.getRole_id().toString().equals("11118400-e29b-41d4-a716-446655440010")){
-            System.out.println("login data entered is for an admin");
-        }
-
+         System.out.println(userFound.getId());
         return userFound;
     }
 }
