@@ -44,8 +44,8 @@ public class DoctorService {
     public void update(UUID id, Doctor doctor) {
         Doctor doctorToUpdate = doctorRepository.findById(id);
 
-        if (!doctor.getName().isEmpty()) {
-            doctorToUpdate.setName(doctor.getName());
+        if (!doctor.getFirstName().isEmpty()) {
+            doctorToUpdate.setFirstName(doctor.getFirstName());
         }
         if (!doctor.getImage().isEmpty()) {
             doctorToUpdate.setImage(doctor.getImage());
@@ -53,24 +53,18 @@ public class DoctorService {
         if (doctor.getDateOfBirth() != null) {
             doctorToUpdate.setDateOfBirth(doctor.getDateOfBirth());
         }
-        if (!doctor.getDepartment().isEmpty()) { // what is the difference to .isBlank() ?
-            doctorToUpdate.setDepartment(doctor.getDepartment());
-        }
-        //if(!doctor.getEmail().isEmpty()){
-        //    doctorToUpdate.setEmail(doctor.getEmail());
-        //}
         if (!doctor.getSpecialization().isEmpty()) {
             doctorToUpdate.setSpecialization(doctor.getSpecialization());
         }
         doctorRepository.save(doctorToUpdate);
     }
 
-    public void updateOneField(KeyValueId dtoReceived) {
-        log.info("update field running");
-        doctorRepository.updateField(dtoReceived.getId(), dtoReceived.getValue());
-    }
+//    public void updateOneField(KeyValueId dtoReceived) {
+//        log.info("update field running");
+//        doctorRepository.updateField(dtoReceived.getId(), dtoReceived.getValue());
+//    }
 
-    public List<String> getAllSpecializations() {
-        return doctorRepository.getSpecializations();
-    }
+//    public List<String> getAllSpecializations() {
+//        return doctorRepository.getSpecializations();
+//    }
 }

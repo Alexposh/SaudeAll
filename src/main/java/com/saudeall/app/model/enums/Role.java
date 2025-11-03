@@ -4,10 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum Role {
-    PATIENT("Patient"),
+    USER("User"),
+    STAFF("Staff"),
     DOCTOR("Doctor"),
-    NURSE("Nurse"),
-    RECEPTIONIST("Receptionist");
+    ADMIN("Admin");
 
     private final String roleName;
 

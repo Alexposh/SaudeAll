@@ -54,31 +54,4 @@ public class DoctorsController {
 
     }
 
-    @GetMapping("/specialities")
-    public List<String> getAllSpecializations(){
-        return doctorService.getAllSpecializations();
-    }
-
-//
-//    @PutMapping("/doctor-partial-update/{id}/{field}/{value}")
-//    public void updateSingleField(@PathVariable UUID id, @PathVariable String field, @PathVariable String value){
-//        System.out.println("updating the " + field + " to be "+ value);
-//        doctorService.updateOneField(id, field, value);
-//        System.out.println("After the update");
-//    }
-
-//    @PutMapping("/doctor-image/upload/{id}")
-//    public void uploadImage(@PathVariable UUID id, @RequestBody String image){
-//        doctorService.updateImage(id, image);
-//    }
-
-    @PostMapping("/doctor-update-field")
-    public void updateImage(@RequestBody KeyValueId dtoReceived){
-        doctorService.updateOneField(dtoReceived);
-    }
-
-
-
-
-
 }

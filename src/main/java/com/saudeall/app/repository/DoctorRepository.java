@@ -25,13 +25,13 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 //    void updateField(@Param("id")UUID id, @Param("value")String value);
 
 
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE doctor SET image = :value WHERE id = :id", nativeQuery = true)
-    void updateField(@Param("id") UUID id, @Param("value") String value);
-
-
-    @Query(value = "SELECT DISTINCT d.specialization FROM Doctor d")
-    ArrayList<String> getSpecializations();
+//    @Modifying
+//    @Transactional
+//    @Query(value = "UPDATE doctor SET image = :value WHERE id = :id", nativeQuery = true)
+//    void updateField(@Param("id") UUID id, @Param("value") String value);
+//
+//
+//    @Query(value = "SELECT DISTINCT d.specialization FROM Doctor d")
+//    ArrayList<String> getSpecializations();
 
 }
