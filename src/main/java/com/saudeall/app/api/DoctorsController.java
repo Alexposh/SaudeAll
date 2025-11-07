@@ -43,9 +43,11 @@ public class DoctorsController {
         return doctorService.findById(id);
     }
 
-    @PutMapping(path="/doctor-update/{id}")
-    public void updatePatient(@PathVariable UUID id, @RequestBody Doctor updatedDoctor){
-        doctorService.update(id, updatedDoctor);
+    @PutMapping(path="/doctor-update")
+    public Doctor updateDoctor(@RequestBody Doctor updatedDoctor){
+        System.out.println(updatedDoctor);
+        doctorService.update(updatedDoctor);
+        return doctorService.findById(updatedDoctor.getId());
     }
 
     @GetMapping("/doctors/date")

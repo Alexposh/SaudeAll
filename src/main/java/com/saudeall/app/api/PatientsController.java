@@ -27,13 +27,6 @@ public class PatientsController {
         return patientService.getAll();
     }
 
-    @GetMapping("/genders")
-    public List<GenderDTO> getGenders() {
-        return Arrays.stream(Gender.values())
-                .map(gender -> new GenderDTO(gender.name(), gender.getDisplayName()))
-                .collect(Collectors.toList());
-    }
-
     @PostMapping(path = "/patient")
     public void createPatient(@RequestBody Patient patient) {
         log.info("Adding a patient....");
@@ -42,7 +35,6 @@ public class PatientsController {
 
     @GetMapping(path="/patient/{id}")
     public Patient getSinglePatient(@PathVariable UUID id){ return patientService.findById(id);}
-
 
 
     @PutMapping(path="/patient-update")

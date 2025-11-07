@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.saudeall.app.model.enums.Gender;
+import com.saudeall.app.model.enums.Specialization;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +31,9 @@ public class Doctor {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
-    private String specialization;
+    @Column(name="specialization")
+    @Enumerated(EnumType.STRING)
+    private Specialization specialization;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;

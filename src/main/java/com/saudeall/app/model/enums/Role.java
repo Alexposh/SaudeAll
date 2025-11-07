@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Role {
-    USER("User"),
+    USER("Patient"),
     STAFF("Staff"),
     DOCTOR("Doctor"),
     ADMIN("Admin");

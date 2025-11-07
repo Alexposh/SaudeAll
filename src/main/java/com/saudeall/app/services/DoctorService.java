@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import com.saudeall.app.model.enums.Specialization;
 import org.springframework.stereotype.Service;
 
 import com.saudeall.app.model.Doctor;
@@ -41,30 +42,31 @@ public class DoctorService {
         return doctorRepository.findById(idOfDoctor);
     }
 
-    public void update(UUID id, Doctor doctor) {
-        Doctor doctorToUpdate = doctorRepository.findById(id);
+    public void update(Doctor doctor) {
+        Doctor doctorToUpdate = doctorRepository.findById(doctor.getId());
 
         if (!doctor.getFirstName().isEmpty()) {
             doctorToUpdate.setFirstName(doctor.getFirstName());
         }
-        if (!doctor.getImage().isEmpty()) {
+        if (!doctor.getLastName().isEmpty()) {
+            doctorToUpdate.setLastName(doctor.getLastName());
+        }
+        if (doctor.getImage() != null) {
             doctorToUpdate.setImage(doctor.getImage());
         }
-        if (doctor.getDateOfBirth() != null) {
+        if (doctor.getEmail() != null) {
+            doctorToUpdate.setEmail(doctor.getEmail());
+        }
+        if (doctor.getGender() != null) {
+            doctorToUpdate.setGender(doctor.getGender());
+        }
+        if(doctor.getDateOfBirth() != null){
             doctorToUpdate.setDateOfBirth(doctor.getDateOfBirth());
         }
-        if (!doctor.getSpecialization().isEmpty()) {
-            doctorToUpdate.setSpecialization(doctor.getSpecialization());
+        if (doctor.getSpecialization().getDisplayName() != null) {
+            doctorToUpdate.setSpecialization(Specialization.fromDisplayName(doctor.getSpecialization().getDisplayName()));
         }
         doctorRepository.save(doctorToUpdate);
     }
 
-//    public void updateOneField(KeyValueId dtoReceived) {
-//        log.info("update field running");
-//        doctorRepository.updateField(dtoReceived.getId(), dtoReceived.getValue());
-//    }
-
-//    public List<String> getAllSpecializations() {
-//        return doctorRepository.getSpecializations();
-//    }
 }

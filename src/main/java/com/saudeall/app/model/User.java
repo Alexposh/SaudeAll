@@ -27,9 +27,11 @@ public class User {
 
     private String password;
 
-    @OneToOne
-    private Doctor doctor;
+    private String role;
 
-    @OneToOne
-    private Patient patient;
+//    @OneToOne
+//    private Doctor doctor;
+//
+//    @OneToOne
+//    private Patient patient;
 }
