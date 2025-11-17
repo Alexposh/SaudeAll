@@ -38,9 +38,9 @@ public class PatientsController {
 
 
     @PutMapping(path="/patient-update")
-    public Patient updatePatient(@RequestBody Patient updatedPatient){
+    public void updatePatient(@RequestBody Patient updatedPatient){
         patientService.update(updatedPatient);
-        return patientService.findById(updatedPatient.getId());
+//        return patientService.findById(updatedPatient.getId());
     }
 
     @DeleteMapping(path=("/patient-delete/{id}"))

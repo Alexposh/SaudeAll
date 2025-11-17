@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.saudeall.app.model.enums.Status;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +45,8 @@ public class AppointmentController {
         log.info("Creating an appointment");
         log.info(LocalDateTime.now().toString());
 //        appointment.setCreatedAt(LocalDateTime.now());
+//        appointment.setStatus(Status.REQUESTED);
+        System.out.println(appointment.getStatus());
         appointmentService.add(appointment);
     }
 
@@ -55,6 +58,12 @@ public class AppointmentController {
     @GetMapping("/appointment/doctor")
     public List<Appointment> getAppointmentsByDoctor(UUID doctorId) {
         return appointmentService.getAllByDoctor(doctorId);
+    }
+
+    @GetMapping("/appointment/patient/{patientId}")
+    public List<Appointment> getAppointmentsForPatient(@PathVariable UUID patientId) {
+        System.out.println(appointmentService.getAllByPatient(patientId));
+        return appointmentService.getAllByPatient(patientId);
     }
 
     @GetMapping("/appointment/status")

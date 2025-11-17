@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import com.saudeall.app.model.enums.Status;
 import com.saudeall.app.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class AppointmentService {
     }
 
     public void add(Appointment appointment){
+        appointment.setCreatedAt(LocalDateTime.now());
+        appointment.setStatus(Status.REQUESTED);
         appointmentRepository.save(appointment);
     }
 
@@ -34,6 +37,10 @@ public class AppointmentService {
 
     public List<Appointment> getAllByDoctor(UUID doctorId) {
         return Collections.emptyList();
+    }
+
+    public List<Appointment> getAllByPatient(UUID patientId) {
+        return appointmentRepository.findByPatientId(patientId);
     }
 
     public List<Appointment> getAllByDoctorAndDate(UUID doctorId, LocalDateTime date) {
