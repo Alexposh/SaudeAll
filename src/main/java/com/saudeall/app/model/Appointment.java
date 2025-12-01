@@ -1,5 +1,6 @@
 package com.saudeall.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.saudeall.app.model.enums.Gender;
 import com.saudeall.app.model.enums.Status;
@@ -22,12 +23,18 @@ public class Appointment {
     @UuidGenerator
     private UUID id;
 
-    @Column(name="doctor_id")
-    UUID doctorId;
+//    @Column(name="doctor_id")
+//    UUID doctorId;
     @Column(name="patient_id")
     UUID patientId;
-    @Column(name="location_id")
-    UUID locationId;
+
+//    @Column(name="location_id")
+//    UUID locationId;
+
+    @OneToOne
+    @JoinColumn(name="clinic_id")
+    @JsonIgnoreProperties("locations")
+    private Clinic clinic;
 
 //    @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
     @Column(name="date_of_appointment")
@@ -41,7 +48,16 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @ManyToOne
+    @JoinColumn(name="doctor_id")
+    @JsonIgnoreProperties("appointments")
+    private Doctor doctor;
 
+
+//
+//    @ManyToOne
+//    @JoinColumn(name="location_id")
+//    private Clinic clinic;
 //    public Appointment(UUID id, UUID doctorId, UUID patientId, UUID locationId, LocalDateTime dateOfAppointment){
 
 //    }

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import com.saudeall.app.model.dto.AppointmentDTO;
 import com.saudeall.app.model.enums.Status;
 import com.saudeall.app.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;

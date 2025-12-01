@@ -28,4 +28,5 @@ public class Clinic {
     private String country;
     private String zip_code;
     private String city;
+
 }
