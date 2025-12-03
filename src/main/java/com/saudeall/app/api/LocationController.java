@@ -12,6 +12,7 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins="http://localhost:8100")
 @RequestMapping("/api/v1/locations")
 public class LocationController {
     private final LocationService locationService;

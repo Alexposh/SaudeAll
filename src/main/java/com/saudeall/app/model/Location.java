@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
 
@@ -12,12 +13,15 @@ import java.util.UUID;
 @Table(name="location")
 public class Location {
     @Id
+    @UuidGenerator
     private UUID id;
     private String name;
-    private String city;
     private String street;
-    private int number;
-    private int numberExtension;
+    private int street_number;
+    private int number_extension;
     private String country;
-    private String zipCode;
+    private String zip_code;
+    private String city;
+
+
 }

@@ -17,52 +17,34 @@ import java.util.UUID;
 @Data
 @Table(name="appointment")
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Appointment {
     @Id
     @UuidGenerator
     private UUID id;
-
-//    @Column(name="doctor_id")
-//    UUID doctorId;
-    @Column(name="patient_id")
-    UUID patientId;
-
-//    @Column(name="location_id")
-//    UUID locationId;
-
-    @OneToOne
-    @JoinColumn(name="clinic_id")
-    @JsonIgnoreProperties("locations")
-    private Clinic clinic;
-
-//    @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
-    @Column(name="date_of_appointment")
-//    @JsonProperty("date_of_appointment")
-    LocalDateTime dateOfAppointment;
-
-    @CreationTimestamp
-    LocalDateTime createdAt;
-
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private Status status;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
     @JsonIgnoreProperties("appointments")
     private Doctor doctor;
 
+    @CreationTimestamp
+    LocalDateTime createdAt;
 
-//
-//    @ManyToOne
-//    @JoinColumn(name="location_id")
-//    private Clinic clinic;
-//    public Appointment(UUID id, UUID doctorId, UUID patientId, UUID locationId, LocalDateTime dateOfAppointment){
+    @Column(name="patient_id")
+    UUID patientId;
 
-//    }
+    @Column(name="date_of_appointment")
+    LocalDateTime dateOfAppointment;
 
-    public enum Role {
+    @ManyToOne
+    @JoinColumn(name="location_id")
+    @JsonIgnoreProperties("appointments")
+    private Location location;
 
-    }
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }
