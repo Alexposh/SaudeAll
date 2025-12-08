@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.saudeall.app.model.dto.AppointmentCreationDTO;
-import com.saudeall.app.model.dto.AppointmentDTO;
 import com.saudeall.app.model.enums.Status;
 import com.saudeall.app.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +17,22 @@ import com.saudeall.app.model.Appointment;
 @RequiredArgsConstructor
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
+    private final DoctorService doctorService;
+    private final LocationService locationService;
 
     public List<Appointment> getAll() {
         return appointmentRepository.findAll();
     }
 
-    public void add(Appointment appointment){
-        appointment.setCreatedAt(LocalDateTime.now());
-        appointment.setStatus(Status.REQUESTED);
-        appointmentRepository.save(appointment);
+    public void add(AppointmentCreationDTO appointment){
+        Appointment newAppointment = new Appointment();
+        newAppointment.setDateOfAppointment(appointment.getDateOfAppointment());
+        newAppointment.setDoctor(doctorService.findById(appointment.getDoctorId()));
+        newAppointment.setPatientId(appointment.getPatientId());
+        newAppointment.setLocation(locationService.findById(appointment.getLocationId()));
+        newAppointment.setCreatedAt(LocalDateTime.now());
+        newAppointment.setStatus(Status.REQUESTED);
+        appointmentRepository.save(newAppointment);
     }
 
     public Appointment findById(UUID idOfAppointment){

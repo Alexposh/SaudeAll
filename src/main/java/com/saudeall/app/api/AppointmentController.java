@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.saudeall.app.model.dto.AppointmentCreationDTO;
-import com.saudeall.app.model.dto.AppointmentDTO;
-import com.saudeall.app.model.enums.Status;
 import com.saudeall.app.services.DoctorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,18 +47,8 @@ public class AppointmentController {
     @PostMapping("/create")
     public void createAppointment(@RequestBody AppointmentCreationDTO appointment) {
         log.info("Creating an appointment");
-//        System.out.println(appointment.getDoctorId().toString());
-        Appointment newAppointment = new Appointment();
-        newAppointment.setDateOfAppointment(appointment.getDateOfAppointment());
-        newAppointment.setStatus(Status.REQUESTED);
-        newAppointment.setDoctor(doctorService.findById(appointment.getDoctorId()));
-        newAppointment.setPatientId(appointment.getPatientId());
-        newAppointment.setLocation(locationService.findById(appointment.getLocationId()));
-//        log.info(LocalDateTime.now().toString());
-//        appointment.setCreatedAt(LocalDateTime.now());
-//        appointment.setStatus(Status.REQUESTED);
-//        log.info(appointment.getLocation().toString());
-        appointmentService.add(newAppointment);
+        System.out.println(appointment.getDoctorId());
+        appointmentService.add(appointment);
     }
 
     @GetMapping("/appointment/date")

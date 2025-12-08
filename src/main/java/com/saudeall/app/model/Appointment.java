@@ -27,7 +27,7 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
-    @JsonIgnoreProperties("appointments")
+    @JsonIgnoreProperties({"appointments", "gender","email"})
     private Doctor doctor;
 
     @CreationTimestamp
