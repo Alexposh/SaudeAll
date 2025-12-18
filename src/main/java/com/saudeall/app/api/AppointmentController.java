@@ -2,16 +2,12 @@ package com.saudeall.app.api;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.saudeall.app.model.dto.AppointmentCreationDTO;
 import com.saudeall.app.services.DoctorService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.saudeall.app.model.Appointment;
 import com.saudeall.app.services.AppointmentService;
@@ -29,13 +25,13 @@ public class AppointmentController {
     private final DoctorService doctorService;
     private final LocationService locationService;
 
-    @GetMapping("/appointments")
+    @GetMapping("/all")
     public List<Appointment> getAppointments() {
         return appointmentService.getAll();
     }
 
     @GetMapping("/appointment/{id}")
-    public Appointment findById(@PathVariable UUID id) {
+    public Optional<Appointment> findById(@PathVariable UUID id) {
         return appointmentService.findById(id);
     }
 
@@ -49,6 +45,12 @@ public class AppointmentController {
         log.info("Creating an appointment");
         System.out.println(appointment.getDoctorId());
         appointmentService.add(appointment);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteAppointment(@PathVariable UUID id) {
+        log.info("Deleting an appointment");
+        appointmentService.deleteById(id);
     }
 
     @GetMapping("/appointment/date")

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,7 +26,7 @@ public class UserService {
 
     public void add(User user) { userRepository.save(user); }
 
-    public User findById(UUID idOfUser){ return userRepository.findById(idOfUser);}
+    public Optional<User> findById(UUID idOfUser){ return userRepository.findById(idOfUser);}
 
     public User findByEmail(String email){ return userRepository.findByEmail(email);}
 }

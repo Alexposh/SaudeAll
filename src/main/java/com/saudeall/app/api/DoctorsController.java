@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -39,12 +40,12 @@ public class DoctorsController {
     }
 
     @GetMapping("/doctor/{id}")
-    public Doctor getSingleDoctor(@PathVariable UUID id){
+    public Optional<Doctor> getSingleDoctor(@PathVariable UUID id){
         return doctorService.findById(id);
     }
 
     @PutMapping(path="/doctor-update")
-    public Doctor updateDoctor(@RequestBody Doctor updatedDoctor){
+    public Optional<Doctor> updateDoctor(@RequestBody Doctor updatedDoctor){
         System.out.println(updatedDoctor);
         doctorService.update(updatedDoctor);
         return doctorService.findById(updatedDoctor.getId());

@@ -16,11 +16,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Repository
-public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+public interface DoctorRepository extends JpaRepository<Doctor, UUID> {
 
-    Doctor findById(UUID idOfDoctor);
-
-//    @Transactional
+    //    @Transactional
 //    @Query(value = "update doctor set image=:value where id=:id", nativeQuery = true)
 //    void updateField(@Param("id")UUID id, @Param("value")String value);
 

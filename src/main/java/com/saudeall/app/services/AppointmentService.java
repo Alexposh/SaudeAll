@@ -3,6 +3,7 @@ package com.saudeall.app.services;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.saudeall.app.model.dto.AppointmentCreationDTO;
@@ -27,15 +28,15 @@ public class AppointmentService {
     public void add(AppointmentCreationDTO appointment){
         Appointment newAppointment = new Appointment();
         newAppointment.setDateOfAppointment(appointment.getDateOfAppointment());
-        newAppointment.setDoctor(doctorService.findById(appointment.getDoctorId()));
+        newAppointment.setDoctor(doctorService.findById(appointment.getDoctorId()).get());
         newAppointment.setPatientId(appointment.getPatientId());
-        newAppointment.setLocation(locationService.findById(appointment.getLocationId()));
+        newAppointment.setLocation(locationService.findById(appointment.getLocationId()).get());
         newAppointment.setCreatedAt(LocalDateTime.now());
         newAppointment.setStatus(Status.REQUESTED);
         appointmentRepository.save(newAppointment);
     }
 
-    public Appointment findById(UUID idOfAppointment){
+    public Optional<Appointment> findById(UUID idOfAppointment){
         return appointmentRepository.findById(idOfAppointment);
     }
 
@@ -59,4 +60,7 @@ public class AppointmentService {
         return Collections.emptyList();
     }
 
+    public void deleteById(UUID appointmentId){
+        appointmentRepository.deleteById(appointmentId);
+    };
 }

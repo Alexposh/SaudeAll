@@ -5,8 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface PatientRepository extends JpaRepository<Patient, Long> {
-    Patient findById(UUID idOfPatient);
+public interface PatientRepository extends JpaRepository<Patient, UUID> {
 
 
 }

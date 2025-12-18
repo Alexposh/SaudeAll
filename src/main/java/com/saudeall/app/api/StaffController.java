@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -28,7 +29,7 @@ public class StaffController {
     }
 
     @PostMapping(path = "/create-doctor")
-    public Doctor createDoctor(@RequestBody StaffMember newStaffMember){
+    public Optional<Doctor> createDoctor(@RequestBody StaffMember newStaffMember){
         staffService.add(newStaffMember);
         StaffMember newlyCreatedStaffMember = staffService.findByEmail(newStaffMember.getEmail());
         Doctor newlyCreatedDoctor = new Doctor();

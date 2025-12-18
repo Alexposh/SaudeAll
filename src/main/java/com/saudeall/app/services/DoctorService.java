@@ -1,10 +1,7 @@
 package com.saudeall.app.services;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import com.saudeall.app.model.enums.Specialization;
 import org.springframework.stereotype.Service;
@@ -38,12 +35,19 @@ public class DoctorService {
         doctorRepository.save(doctor);
     }
 
-    public Doctor findById(UUID idOfDoctor) {
+    public Optional<Doctor> findById(UUID idOfDoctor) {
         return doctorRepository.findById(idOfDoctor);
     }
 
     public void update(Doctor doctor) {
-        Doctor doctorToUpdate = doctorRepository.findById(doctor.getId());
+        Optional<Doctor> optionalDoctor = doctorRepository.findById(doctor.getId());
+
+
+        if(optionalDoctor.isEmpty()){
+            return;
+        }
+
+        Doctor doctorToUpdate = optionalDoctor.get();
 
         if (!doctor.getFirstName().isEmpty()) {
             doctorToUpdate.setFirstName(doctor.getFirstName());

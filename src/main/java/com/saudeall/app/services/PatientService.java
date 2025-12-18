@@ -1,6 +1,7 @@
 package com.saudeall.app.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.saudeall.app.model.enums.Gender;
@@ -26,12 +27,19 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
-    public Patient findById(UUID idOfPatient){
+    public Optional<Patient> findById(UUID idOfPatient){
         return patientRepository.findById(idOfPatient);
     }
 
     public void update(Patient patient){
-        Patient patientToUpdate = patientRepository.findById(patient.getId());
+        Optional<Patient> optionalPatient = patientRepository.findById(patient.getId());
+
+        if(optionalPatient.isEmpty()){
+            return;
+        }
+
+        Patient patientToUpdate = optionalPatient.get();
+
 
         if(!patient.getFirstName().isEmpty()){
             patientToUpdate.setFirstName(patient.getFirstName());
@@ -60,7 +68,7 @@ public class PatientService {
     }
 
     public void deleteById(UUID id){
-        patientRepository.delete(patientRepository.findById(id));
+        patientRepository.delete(patientRepository.findById(id).get());
     }
 
 

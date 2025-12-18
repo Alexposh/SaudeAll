@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,7 +22,7 @@ public class LocationService {
         locationRepository.save(location);
     }
 
-    public Location findById(UUID idOfLocation){
+    public Optional<Location> findById(UUID idOfLocation){
         return locationRepository.findById(idOfLocation);
     }
 

@@ -1,6 +1,7 @@
 package com.saudeall.app.api;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class PatientsController {
     }
 
     @GetMapping(path="/patient/{id}")
-    public Patient getSinglePatient(@PathVariable UUID id){ return patientService.findById(id);}
+    public Optional<Patient> getSinglePatient(@PathVariable UUID id){ return patientService.findById(id);}
 
 
     @PutMapping(path="/patient-update")

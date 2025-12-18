@@ -8,14 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.UUID;
 
-public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
-
-    Appointment findById(UUID idOfAppointment);
+public interface AppointmentRepository extends JpaRepository<Appointment, UUID>{
 
     List<Appointment> findByPatientId(UUID patientId);
-
-
-
 
 
     @Query(value = """

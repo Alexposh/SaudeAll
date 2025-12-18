@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -51,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping(path="/create-patient")
-    public Patient createUser(@RequestBody User user){
+    public Optional<Patient> createUser(@RequestBody User user){
         userService.add(user);
         User newUserCreated = userService.findByEmail(user.getEmail());
         Patient newPatientToBeCreated = new Patient(newUserCreated.getId(), newUserCreated.getEmail());
@@ -60,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping(path="/create-doctor")
-    public Doctor createDoctor(@RequestBody User newDoctor){
+    public Optional<Doctor> createDoctor(@RequestBody User newDoctor){
         String role = Role.DOCTOR.getRoleName();
         userService.add(newDoctor);
         User newDoctorCreated = userService.findByEmail(newDoctor.getEmail());
